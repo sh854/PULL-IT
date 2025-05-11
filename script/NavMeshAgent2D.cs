@@ -7,7 +7,7 @@ public class NavMeshAgent2D : MonoBehaviour
     public float speed = 1.0f;
     public float stoppingDistance = 0;
 
-    [HideInInspector]//常にUnityエディタから非表示
+    [HideInInspector]
     private Vector2 trace_area = Vector2.zero;
     public Vector2 destination
     {
@@ -37,7 +37,7 @@ public class NavMeshAgent2D : MonoBehaviour
 
         
 
-        if (path.corners.Length > 0) // path.corners 配列に要素があるか確認
+        if (path.corners.Length > 0) 
         {
             Vector2 corner = path.corners[0];
 
