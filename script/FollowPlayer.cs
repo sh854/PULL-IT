@@ -186,7 +186,7 @@ public class FollowPlayer : MonoBehaviour
             }
 
             Destroy(gameObject);
-            enemies.Remove(gameObject); // enemies リストからの削除は適切なタイミングで行う必要があります
+            enemies.Remove(gameObject); 
             Instantiate(particle, transform.position, Quaternion.identity);
             Instantiate(punk, transform.position, Quaternion.identity);
         }
@@ -219,17 +219,17 @@ public class FollowPlayer : MonoBehaviour
 
     void runawayPlayer()
     {
-        A = new Vector2(transform.position.x, transform.position.y); // 自分のポジション
-        C = new Vector2(target.transform.position.x, target.transform.position.y); // ターゲットポジション
+        A = new Vector2(transform.position.x, transform.position.y); 
+        C = new Vector2(target.transform.position.x, target.transform.position.y); 
 
-        AB = new Vector2(move.x, move.y); // 移動方向
+        AB = new Vector2(move.x, move.y); 
 
-        AC = C - A; // ターゲットのベクトルを調べる
+        AC = C - A; 
 
-        //なす角ｒを求める
-        float dot = AB.x * AC.x + AB.y * AC.y; // 内積
+        
+        float dot = AB.x * AC.x + AB.y * AC.y; 
 
-        float r = Acosf(dot / ((float)length(AB) * (float)length(AC))); // アークコサインを使って内積とベクトルの長さから角度を求める
+        float r = Acosf(dot / ((float)length(AB) * (float)length(AC))); 
 
         // 曲がる方向を決める
         if (AB.x * AC.y - AB.y * AC.x < 0)
@@ -237,7 +237,7 @@ public class FollowPlayer : MonoBehaviour
             r = -r;
         }
 
-        r = r * 180 / Mathf.PI; // ラジアンから角度に
+        r = r * 180 / Mathf.PI; 
 
         // 回転角度制御
         if (r > Maxkaku)
@@ -250,7 +250,7 @@ public class FollowPlayer : MonoBehaviour
         }
 
 
-        rotation = r; // 曲がる角度を入れる
+        rotation = r; 
 
 
         Move();
@@ -258,25 +258,21 @@ public class FollowPlayer : MonoBehaviour
 
     void Move()
     {
-        float rot = rotation; // 曲がる角度
+        float rot = rotation; 
 
         float tx = move.x, ty = move.y;
 
         move.x = tx * Mathf.Cos(rot) - ty * Mathf.Sin(rot);
         move.y = tx * Mathf.Sin(rot) + ty * Mathf.Cos(rot);
 
-        arot = Mathf.Atan2(move.x, move.y); // 移動量から角度を求める
-        float kaku = arot * 180.0f / Mathf.PI * -1 + 90; // ラジアンから角度に
+        arot = Mathf.Atan2(move.x, move.y); 
+        float kaku = arot * 180.0f / Mathf.PI * -1 + 90; 
 
-        rb.velocity = new Vector2(move.x, move.y) * speed * -1; // 移動(最後のー1をかけている所を消すとプレイヤーを追いかけます)
-        transform.rotation = Quaternion.Euler(0, 0, kaku); // 回転
+        rb.velocity = new Vector2(move.x, move.y) * speed * -1; 
+        transform.rotation = Quaternion.Euler(0, 0, kaku); 
 
     }
-    /// <summary>
-    /// 長さが+-1を越えたとき1に戻す処理
-    /// </summary>
-    /// <param name="a">内積 / ベクトルの長さの答</param>
-    /// <returns></returns>
+  
     public float Acosf(float a)
     {
         if (a < -1) a = -1;
@@ -285,11 +281,7 @@ public class FollowPlayer : MonoBehaviour
         return (float)Mathf.Acos(a);
     }
 
-    /// <summary>
-    /// ベクトルの長さを求める
-    /// </summary>
-    /// <param name="vec">2点間のベクトル</param>
-    /// <returns>ベクトルの長さを返す</returns>
+
     public float length(Vector2 vec)
     {
         return Mathf.Sqrt(vec.x * vec.x + vec.y * vec.y);
