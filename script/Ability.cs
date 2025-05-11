@@ -54,11 +54,6 @@ public class Ability : MonoBehaviour
         }
 
 
-
-
-
-
-
         if (displayGizmo && Time.time - gizmoDisplayStartTime > 1)
         {
             displayGizmo = false;
@@ -139,22 +134,10 @@ public class Ability : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     private void OnDrawGizmos()
     {
         if (displayGizmo)
         {
-            // ゲームビュー上に円形のギズモを表示
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, 2);
         }
