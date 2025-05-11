@@ -153,7 +153,6 @@ namespace Utility
         {
             if (value != previousValue)
             {
-                // 値が変化した瞬間の処理
                 previousValue = value;
                 elapsedTime = 0.0f;
             }
