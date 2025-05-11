@@ -34,11 +34,9 @@ public class EnemyManager : MonoBehaviour
 
     void Update()
     {
-        
-        // 指定の間隔で新しいboidを生成
         if (Time.time - lastSpawnTime >= spawnInterval && ENEMIES.Count < maxEnemyCount)
         {
-            int enemyToSpawn = Random.Range(1, 4); // 1から3個のboidをランダムに生成
+            int enemyToSpawn = Random.Range(1, 4); 
             SpawnEnemies(enemyToSpawn,0.5f);
             lastSpawnTime = Time.time;
 
