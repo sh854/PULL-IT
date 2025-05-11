@@ -6,21 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class Gamestart : MonoBehaviour
 {
-    public float overlapRadius = 1f; // 重なりを検知する半径
-    public float overlapDuration = 3f; // 重なりを検知する時間（秒）
+    public float overlapRadius = 1f; 
+    public float overlapDuration = 3f; 
     private float overlapTimer = 0f;
     private bool isOverlapping = false;
     public GameObject circle;
     public Animator button;
 
-    public LayerMask playerLayer; // プレイヤーのレイヤー
+    public LayerMask playerLayer; 
 
     private void Update()
     {
-        // オブジェクトの位置
+      
         Vector2 objectPosition = transform.position;
-
-        // オブジェクトの上にプレイヤーがいるかどうかをOverlapCircleで判定
+  
         Collider2D hit = Physics2D.OverlapCircle(objectPosition, overlapRadius, playerLayer);
 
         if (hit != null)
@@ -55,10 +54,8 @@ public class Gamestart : MonoBehaviour
 
             if (overlapTimer >= overlapDuration)
             {
-                // 一定時間以上重なっている処理を実行
                 Debug.Log("Player has been overlapping for " + overlapDuration + " seconds.");
 
-                // ここに処理を追加
                 SceneManager.LoadScene("Slingshot");
             }
         }
