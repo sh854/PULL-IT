@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
         // 数秒後にパネルを非表示にしてゲーム再生
         StartCoroutine(StartGameAfterDelay());
-        ResetChain(); // ゲーム開始時に初期化
+        ResetChain(); 
 
         EnemyManager enemyManager = FindObjectOfType<EnemyManager>();
         audioSource = GetComponent<AudioSource>();
@@ -234,7 +234,7 @@ public class GameManager : MonoBehaviour
             chainTimer -= Time.deltaTime;
             if (chainTimer <= 0f)
             {
-                ResetChain(); // 制限時間が経過したら連鎖をリセット
+                ResetChain();
             }
         }
 
@@ -258,7 +258,6 @@ public class GameManager : MonoBehaviour
 
     private int CalculateScore(float score)
     {
-        // スコア計算のロジック（例: 敵ごとに固定のスコア）
 
         return Mathf.RoundToInt(score * (1.0f + scoreMultiplier));
     }
@@ -319,8 +318,8 @@ public class GameManager : MonoBehaviour
             chainTimer = chainTimeLimit;
         }
 
-        currentChainCount++; // 連鎖数を増加
-        scoreMultiplier += chainScoreMultiplier; // スコア倍率を増加
+        currentChainCount++; 
+        scoreMultiplier += chainScoreMultiplier; 
     }
 
     public void Shake(Transform transform, float duration, float magnitude)
@@ -372,24 +371,24 @@ public class GameManager : MonoBehaviour
         textComponent.color = color;
 
 
-        // インスタンス化されたテキストを数秒で消滅
+        
         Destroy(newText, 1);
     }
 
     void SpawnText(int score)
     {
-        // プレハブからテキストをインスタンス化
+       
         GameObject newText = Instantiate(value, GetRandomSpawnPosition(), Quaternion.identity);
         newText.transform.SetParent(canvas.transform, false);
 
-        // テキストにランダムな数値を代入
+        
         Text textComponent = newText.transform.GetChild(0).gameObject.GetComponent<Text>();
 
 
         textComponent.text = "+" + score.ToString();
 
 
-        // インスタンス化されたテキストを数秒で消滅
+        
         Destroy(newText, 1);
     }
 
@@ -404,13 +403,13 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(pauseDuration);
 
-        // パネルを非表示に
+        
         if (startPanel != null)
         {
             startPanel.SetActive(false);
         }
 
-        // ゲーム再生
+        
         Time.timeScale = 1f;
     }
 }
